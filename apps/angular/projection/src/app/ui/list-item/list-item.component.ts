@@ -19,17 +19,9 @@ export class ListItemComponent {
   @Input() id!: number;
   @Input() name!: string;
   @Input() type!: CardType;
-
-  constructor(
-    private teacherStore: TeacherStore,
-    private studentStore: StudentStore
-  ) {}
+  @Input() deleteItem!: (id: number) => void;
 
   delete(id: number) {
-    if (this.type === CardType.TEACHER) {
-      this.teacherStore.deleteOne(id);
-    } else if (this.type === CardType.STUDENT) {
-      this.studentStore.deleteOne(id);
-    }
+    this.deleteItem(id);
   }
 }
